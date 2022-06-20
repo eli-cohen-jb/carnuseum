@@ -128,3 +128,12 @@ export function getCars(){
 export function getCar(id){
   return cars.find(c=> c.id === id);
 }
+
+export function getYears(){
+  
+  // console.log ('*******', cars.map(c=>  {return {'id':c.year, 'name':c.year}}));
+  return [{'id':2010, 'name':2010},
+  {'id':2011, 'name':2011},
+  {'id':2012, 'name':2012},
+  {'id':2013, 'name':2013},]
+}
