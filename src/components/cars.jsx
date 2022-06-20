@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Like from "./common/like";
+import CarsTable from "./carsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getCars, getYears } from "../services/fakeCarsService";
@@ -67,54 +67,7 @@ class Cars extends Component {
         </div>
         <div className="col">
           <p>There's ({count}) cars in the inventory</p>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>mileage</th>
-                <th>make</th>
-                <th>model</th>
-                <th>fuel</th>
-                <th>gear</th>
-                <th>offerType</th>
-                <th>price</th>
-                <th>hp</th>
-                <th>year</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cars.map((car) => {
-                return (
-                  <tr key={car.id}>
-                    <td>{car.mileage}</td>
-                    <td>{car.make}</td>
-                    <td>{car.model}</td>
-                    <td>{car.fuel}</td>
-                    <td>{car.gear}</td>
-                    <td>{car.offerType}</td>
-                    <td>{car.price}</td>
-                    <td>{car.hp}</td>
-                    <td>{car.year}</td>
-                    <td>
-                      <Like
-                        liked={car.liked}
-                        onClick={() => this.handleLike(car)}
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => this.handleDelete(car)}
-                        className="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <CarsTable cars={cars} onDelete={this.handleDelete} onLike={this.handleLike}></CarsTable>
           <Pagination
             itemCount={filterd.length}
             pageSize={pageSize}
