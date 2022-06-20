@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import Like from './common/like';
 
 const CarsTable = (props) => {
-    const {cars, onDelete, onLike} = props
+    const {cars, onDelete, onLike, onSort} = props
 
     return ( <table className="table">
     <thead>
       <tr>
-        <th>mileage</th>
-        <th>make</th>
-        <th>model</th>
-        <th>fuel</th>
-        <th>gear</th>
-        <th>offerType</th>
-        <th>price</th>
-        <th>hp</th>
-        <th>year</th>
+        <th onClick={()=> onSort('mileage')}>mileage</th>
+        <th onClick={()=> onSort('make')}>make</th>
+        <th onClick={()=> onSort('model')}>model</th>
+        <th onClick={()=> onSort('fuel')}>fuel</th>
+        <th onClick={()=> onSort('gear')}>gear</th>
+        <th onClick={()=> onSort('offerType')}>offerType</th>
+        <th onClick={()=> onSort('price')}>price</th>
+        <th onClick={()=> onSort('hp')}>hp</th>
+        <th onClick={()=> onSort('year')}>year</th>
         <th></th>
         <th></th>
       </tr>

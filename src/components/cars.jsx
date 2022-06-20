@@ -5,6 +5,7 @@ import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getCars, getYears } from "../services/fakeCarsService";
 import { paginate } from "../utils/paginate";
+import _ from "lodash";
 
 class Cars extends Component {
   state = {
@@ -16,7 +17,7 @@ class Cars extends Component {
   componentDidMount() {
     this.setState({
       cars_lst: getCars(),
-      years: [{'name':'All'}, ...getYears()],
+      years: [{'id':'', 'name':'All'}, ...getYears()],
     });
   }
   handleDelete = (car) => {
@@ -42,6 +43,10 @@ class Cars extends Component {
     this.setState({ selectedYear: year, currentPage: 1 });
   };
 
+  handleSort = (column) => {
+    console.log(column)
+  };
+
   render() {
     const count = this.state.cars_lst.length;
 
@@ -53,8 +58,10 @@ class Cars extends Component {
       ? cars_lst.filter((c) => c.year === selectedYear.id)
       : cars_lst;
 
+    const sorted = _.orderBy(filterd, ['make'], ['desc'])
+
     // const cars = paginate(pageSize, currentPage, cars_lst);
-    const cars = paginate(filterd,  this.state.currentPage, this.state.pageSize)
+    const cars = paginate(sorted,  this.state.currentPage, this.state.pageSize)
 
     return (
       <div className="row">
@@ -67,7 +74,7 @@ class Cars extends Component {
         </div>
         <div className="col">
           <p>There's ({count}) cars in the inventory</p>
-          <CarsTable cars={cars} onDelete={this.handleDelete} onLike={this.handleLike}></CarsTable>
+          <CarsTable cars={cars} onDelete={this.handleDelete} onLike={this.handleLike} onSort={this.handleSort}></CarsTable>
           <Pagination
             itemCount={filterd.length}
             pageSize={pageSize}
