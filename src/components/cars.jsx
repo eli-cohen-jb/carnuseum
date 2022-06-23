@@ -13,6 +13,7 @@ class Cars extends Component {
     years: [],
     pageSize: 3,
     currentPage: 1,
+    sortColumn: {path: 'make',  order: 'asc'}
   };
   componentDidMount() {
     this.setState({
@@ -44,13 +45,19 @@ class Cars extends Component {
   };
 
   handleSort = (column) => {
-    console.log(column)
+    let sortColumn = {...this.state.sortColumn};    
+    if(sortColumn.path === column)
+      sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
+    else 
+      sortColumn = {path: column,  order: 'asc'} ;
+
+    this.setState({ sortColumn});
   };
 
   render() {
     const count = this.state.cars_lst.length;
 
-    const { pageSize, currentPage, selectedYear, cars_lst } = this.state;
+    const { pageSize, currentPage, selectedYear, cars_lst , sortColumn} = this.state;
 
     if (this.state.cars_lst.length === 0) return <h1>No cars</h1>;
 
@@ -58,7 +65,7 @@ class Cars extends Component {
       ? cars_lst.filter((c) => c.year === selectedYear.id)
       : cars_lst;
 
-    const sorted = _.orderBy(filterd, ['make'], ['desc'])
+    const sorted = _.orderBy(filterd, [sortColumn.path], [sortColumn.order])
 
     // const cars = paginate(pageSize, currentPage, cars_lst);
     const cars = paginate(sorted,  this.state.currentPage, this.state.pageSize)

@@ -1,3 +1,4 @@
+import _ from "lodash"
 const cars = [
   {
     "id" : 1,
@@ -10,7 +11,7 @@ const cars = [
     "price": 6800,
     "hp": 116,
     "year": 2011,
-    "liked":true,
+    "liked" :true,
   },
   {
     "id" : 2,
@@ -22,7 +23,8 @@ const cars = [
     "offerType": "Used",
     "price": 6877,
     "hp": 122,
-    "year": 2011
+    "year": 2013,
+    "liked" :false,
   },
   {
     "id" : 3,
@@ -34,7 +36,8 @@ const cars = [
     "offerType": "Used",
     "price": 6900,
     "hp": 160,
-    "year": 2011
+    "year": 2013,
+    "liked" :false,
   },
   {
     "id" : 4,
@@ -46,7 +49,8 @@ const cars = [
     "offerType": "Used",
     "price": 6950,
     "hp": 110,
-    "year": 2011
+    "year": 2013,
+    "liked" :false,
   },
   {
     "id" : 5,
@@ -58,7 +62,8 @@ const cars = [
     "offerType": "Used",
     "price": 6950,
     "hp": 156,
-    "year": 2011
+    "year": 2000,
+    "liked" :false,
   },
   {
     "id" : 6,
@@ -70,7 +75,8 @@ const cars = [
     "offerType": "Used",
     "price": 6950,
     "hp": 99,
-    "year": 2011
+    "year": 2011,
+    "liked" :false,
   },
   {
     "id" : 7,
@@ -82,7 +88,8 @@ const cars = [
     "offerType": "Used",
     "price": 6970,
     "hp": 131,
-    "year": 2011
+    "year": 2011,
+    "liked" :false,
   },
   {
     "id" : 8,
@@ -94,7 +101,8 @@ const cars = [
     "offerType": "Used",
     "price": 6972,
     "hp": 116,
-    "year": 2011
+    "year": 2011,
+    "liked" :false,
   },
   {
     "id" : 9,
@@ -106,7 +114,8 @@ const cars = [
     "offerType": "Used",
     "price": 6980,
     "hp": 150,
-    "year": 2011
+    "year": 2013,
+    "liked" :false,
   },
   {
     "id" : 10,
@@ -118,7 +127,8 @@ const cars = [
     "offerType": "Used",
     "price": 6990,
     "hp": 86,
-    "year": 2011
+    "year": 2013,
+    "liked" :false,
   }
 ]
 
@@ -131,9 +141,11 @@ export function getCar(id){
 
 export function getYears(){
   
-  // console.log ('*******', cars.map(c=>  {return {'id':c.year, 'name':c.year}}));
-  return [{'id':2010, 'name':2010},
-  {'id':2011, 'name':2011},
-  {'id':2012, 'name':2012},
-  {'id':2013, 'name':2013},]
+  console.log ('*******', _.uniqBy(cars.map(c=>  {return {'id':c.year, 'name':c.year}}), 'id'));
+  // return [{'id':2010, 'name':2010},
+  // {'id':2011, 'name':2011},
+  // {'id':2012, 'name':2012},
+  // {'id':2013, 'name':2013},]
+  // return cars.map(c=>  {return {'id':c.year, 'name':c.year}})
+  return _(cars.map(c=>  {return {'id':c.year, 'name':c.year}})).uniqBy('id').orderBy('id')
 }

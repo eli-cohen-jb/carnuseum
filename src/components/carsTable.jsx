@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Like from './common/like';
 
+
+
 const CarsTable = (props) => {
     const {cars, onDelete, onLike, onSort} = props
 
