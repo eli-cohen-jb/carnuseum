@@ -44,14 +44,8 @@ class Cars extends Component {
     this.setState({ selectedYear: year, currentPage: 1 });
   };
 
-  handleSort = (column) => {
-    let sortColumn = {...this.state.sortColumn};    
-    if(sortColumn.path === column)
-      sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
-    else 
-      sortColumn = {path: column,  order: 'asc'} ;
-
-    this.setState({ sortColumn});
+  handleSort = (sortColumn) => {
+      this.setState({ sortColumn});
   };
 
   render() {
@@ -81,7 +75,13 @@ class Cars extends Component {
         </div>
         <div className="col">
           <p>There's ({count}) cars in the inventory</p>
-          <CarsTable cars={cars} onDelete={this.handleDelete} onLike={this.handleLike} onSort={this.handleSort}></CarsTable>
+          <CarsTable
+            cars={cars}
+            sortColumn={sortColumn}
+            onDelete={this.handleDelete}
+            onLike={this.handleLike}
+            onSort={this.handleSort}
+          ></CarsTable>
           <Pagination
             itemCount={filterd.length}
             pageSize={pageSize}
