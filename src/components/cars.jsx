@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 
 import CarsTable from "./carsTable";
+import FuleTable from "./fuleTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getCars, getYears } from "../services/fakeCarsService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+import { getPetrolPricess } from "../services/fakePetrolService";
 
 class Cars extends Component {
   state = {
@@ -19,6 +21,7 @@ class Cars extends Component {
     this.setState({
       cars_lst: getCars(),
       years: [{'id':'', 'name':'All'}, ...getYears()],
+      petrol_lst : getPetrolPricess(),
     });
   }
   handleDelete = (car) => {
@@ -63,6 +66,7 @@ class Cars extends Component {
 
     // const cars = paginate(pageSize, currentPage, cars_lst);
     const cars = paginate(sorted,  this.state.currentPage, this.state.pageSize)
+    const fulePrices = paginate(this.state.fulePrices,  this.state.currentPage, this.state.pageSiz)
 
     return (
       <div className="row">
@@ -89,6 +93,8 @@ class Cars extends Component {
             onPageChange={this.handlePageChange}
           ></Pagination>
         </div>
+
+        
       </div>
     );
   }

@@ -4,24 +4,18 @@ import TableHeader from "./common/tableHeader";
 import TableBody from "./common/tableBody";
 import Table from "./common/table";
 
-class CarsTable extends Component {
+class FuleTable extends Component {
   state = {};
   columns = [
-    { path: "mileage", label: "Mileage" },
-    { path: "make", label: "Make" },
-    { path: "model", label: "Model" },
-    { path: "fuel.name", label: "Fuel" },
-    { path: "gear", label: "Gear" },
-    { path: "offerType", label: "OfferType" },
-    { path: "price", label: "Price" },
-    { path: "hp", label: "Hp" },
-    { path: "year", label: "Year" },
-    {
-      key: "like",
-      content: (car) => (
-        <Like liked={car.liked} onClick={() => this.props.onLike(car)} />
-      ),
-    },
+    { path: "id", label: "id" },
+    { path: "Country", label: "Country"},
+    { path: "Daily Oil Consumption (Barrels)", label: "Daily Oil Consumption (Barrels)" },
+    { path: "World Share", label: "World Share" },
+    { path: "Yearly Gallons Per Capita", label: "Yearly Gallons Per Capita" },
+    { path: "Price Per Gallon (USD)", label: "Price Per Gallon (USD)" },
+    { path: "Price Per Liter (USD)", label: "Price Per Liter (USD)" },
+    { path: "Price Per Liter (PKR)", label: "Price Per Liter (PKR)" },
+    
     {
       key: "delete",
       content: (car) => (
@@ -101,4 +95,4 @@ class CarsTable extends Component {
 // </table> );
 // }
 
-export default CarsTable;
+export default FuleTable;
