@@ -15,12 +15,13 @@ class Cars extends Component {
     years: [],
     pageSize: 3,
     currentPage: 1,
-    sortColumn: {path: 'make',  order: 'asc'}
+    sortColumn: {path: 'make',  order: 'asc'},
+    selectedYear: {'id':'', 'name':'ALL'},
   };
   componentDidMount() {
     this.setState({
       cars_lst: getCars(),
-      years: [{'id':'', 'name':'All'}, ...getYears()],
+      years: [{'id':'', 'name':'ALL'}, ...getYears()],
       petrol_lst : getPetrolPricess(),
     });
   }
@@ -44,6 +45,7 @@ class Cars extends Component {
   };
 
   handleYearSelect = (year) => {
+    console.log(year)
     this.setState({ selectedYear: year, currentPage: 1 });
   };
 

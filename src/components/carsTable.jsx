@@ -3,12 +3,16 @@ import Like from "./common/like";
 import TableHeader from "./common/tableHeader";
 import TableBody from "./common/tableBody";
 import Table from "./common/table";
-
+import {Link} from 'react-router-dom'
 class CarsTable extends Component {
   state = {};
   columns = [
-    { path: "mileage", label: "Mileage" },
-    { path: "make", label: "Make" },
+    { path: "mileage", label: "Mileage"
+  },
+    { path: "make", label: "Make" ,
+    key: "make",
+    content: car => <Link to={`/cars/${car.id}`}>{car.make}</Link>
+    ,},
     { path: "model", label: "Model" },
     { path: "fuel.name", label: "Fuel" },
     { path: "gear", label: "Gear" },
