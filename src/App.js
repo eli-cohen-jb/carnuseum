@@ -9,6 +9,7 @@ import NotFound from './components/notfound';
 import NavBar from './components/navbar';
 import React from 'react';
 import CarForm from './components/carForm';
+import LoginForm from './components/loginForm';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/cars" component={Cars}></Route>
           <Route path="/customers" component={Customers}></Route>
           <Route path="/rentals" component={Rentals}></Route>
-          <Route path="/not-found" component={NotFound}></Route>    
+          <Route path="/login" component={LoginForm}></Route>    
+          <Route path="/not-found" component={NotFound}></Route> 
           <Redirect from="/" exact to="/cars"></Redirect> 
         </Switch>
       {/* <Cars /> */}
